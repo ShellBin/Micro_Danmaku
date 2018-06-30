@@ -2,7 +2,7 @@ package model;
 import java.awt.*;
 import java.awt.event.*;
 
-import main.GameObject;
+import main.*;
 
 //玩家类，移动和绘制的实现
 public class Player extends GameObject {

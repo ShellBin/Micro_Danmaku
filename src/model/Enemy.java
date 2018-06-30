@@ -1,10 +1,8 @@
 package model;
-
-import main.GameObject;
-
 import java.awt.*;
 import java.awt.event.*;
 
+import main.*;
 
 //敌人类
 public class Enemy extends GameObject {

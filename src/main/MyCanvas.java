@@ -3,7 +3,7 @@ import java.awt.*;
 import java.awt.event.*;
 import java.util.Random;
 
-import main.GameObject;
+import model.*;
 
 public class MyCanvas extends Canvas implements Runnable{
 	ObjectPool objectpool;
@@ -61,8 +61,56 @@ public class MyCanvas extends Canvas implements Runnable{
 		thread.start();
 	}
 	
+	/**
+	 * 绘图过程
+	 * 在重绘时调用
+	 * 从屏幕外缓冲区复制并显示
+	 */
+	public void paint(Graphics g) {
+		g.drawImage(imgBuf, 0, 0, this);
+	}
 
-	public void update(Graphics g) {
+	
+	@Override
+	public void run() {
+		//创建屏幕外缓冲区
+		imgBuf = createImage(500, 500);
+		gBuf = imgBuf.getGraphics();
+		
+		for(counter = 0; ; counter++) {
+			shotkey_state = keyinput.checkShotKey();
+
+			gBuf.setColor(Color.white);
+			gBuf.fillRect(0, 0, 500, 500);
+
+			//画面切换
+			switch (scene) {
+				case 0:
+				title.drawTitle(gBuf);
+				score.drawScore(gBuf);
+				score.drawHiScore(gBuf);
+					
+				if (shotkey_state == SHOT_DOWN) {	//空格键按下进入游戏
+					scene = SCENE_GAMEMAIN;
+				}
+				break;
+				case 1:
+				gameMain();	//游戏主画面
+				break;
+			}
+			
+			repaint();	//重绘
+			
+			try {
+				Thread.sleep(20);
+			}
+			catch(InterruptedException e)
+			{}
+		}
+	}
+
+
+	public void update(Graphics g) {	//提高效率不每次清除屏幕重
 		paint(g);
 	}
 	

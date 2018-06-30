@@ -2,7 +2,7 @@ package model;
 import java.awt.*;
 import java.awt.event.*;
 
-import main.GameObject;
+import main.*;
 
 //玩家子弹类
 public class PlayerBullet extends GameObject {
