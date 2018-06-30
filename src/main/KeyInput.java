@@ -1,6 +1,7 @@
 package main;
 import java.awt.event.*;
 
+
 /**
 *键盘输入
 *空格开始/射击
