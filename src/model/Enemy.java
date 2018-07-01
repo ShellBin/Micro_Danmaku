@@ -1,22 +1,21 @@
 package model;
 import java.awt.*;
-import java.awt.event.*;
 
 import main.*;
 
 //敌人类
 public class Enemy extends GameObject {
-    int counter = 0; //生存时间
-    int life = 0; //生命值
-    int type = 0; //敌人类型
-    boolean able = false; //判定点
-    Player player; //玩家的构造方法
-    boolean startshoot; //开始标记
+    int counter = 0; 		//生存时间
+    int life = 0; 			//生命值
+    int type = 0; 			//敌人类型
+    boolean able = false;	//判定点
+    Player player; 			//玩家的构造方法
+    boolean startshoot; 	//开始标记
     int shootnum;
 
-    Enemy(Player iplayer) {
+    public Enemy(Player iplayer) {
         player = iplayer;	//取玩家位置
-        active = false;	//避免初始化时被激活
+        active = false;		//避免初始化时被激活
     }
 
     /**
@@ -29,26 +28,23 @@ public class Enemy extends GameObject {
         y = iy;
         type = (int) (Math.random() + 0.5);
         active = true;	//启用敌方子弹
-        life = 10;
+        life = 5;		//敌人有5个生命值
         counter = 0;
 
-        boolean able = false;
         shootnum = Level.getLevel();
         startshoot = false;
     }
 
     public void hit() {	//当与玩家子弹碰撞时
-        life--;	//减生命值
+        life--;			//减生命值
         able = true;
 
         if (life < 0) {	//不同敌人不同得分
 
             switch (type) {
-            	case 0:
-                Score.addScore(10);
+            	case 0: Score.addScore(10);
                 break;
-            	case 1:
-                Score.addScore(20);
+            	case 1: Score.addScore(20);
                 break;
             	default:
             }

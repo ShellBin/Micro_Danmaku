@@ -9,8 +9,8 @@ public class Score {
 	static int hiscore;
 	Font scoreFont;
 	
-	Score() {
-		scoreFont = new Font("SimHei", Font.BOLD, 10); 	//黑体
+	public Score() {
+		scoreFont = new Font("SimHei", Font.BOLD, 15); 	//黑体
 		myscore = 0;
 	}
 	
@@ -18,13 +18,13 @@ public class Score {
 	public void drawScore(Graphics g) {	//得分的显示
 		g.setColor(Color.black);
 		g.setFont(scoreFont);
-		g.drawString("得分:"+myscore, 30, 30);
+		g.drawString("得分:"+myscore, 10, 30);	
 	}
 	
 	public void drawHiScore(Graphics g) {	//最高分显示
 		g.setColor(Color.black);
 		g.setFont(scoreFont);
-		g.drawString("最高分:"+hiscore, 420, 30);
+		g.drawString("最高分:"+hiscore, 350, 30);
 	}
 	
 	
@@ -53,9 +53,9 @@ public class Score {
 
 	/**
 	 * 从data.dat读取分数
-	 * 暂时停用是特性
+	 * 暂时停用的特性
 	 */
-	static void loadScore() {
+	public static void loadScore() {
 //            DataInputStream din = new DataInputStream(new FileInputStream("data.dat"));
 //            hiscore = din.readInt();
 //            din.close();

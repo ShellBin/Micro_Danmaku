@@ -8,10 +8,10 @@ public class Title {
 	Font infoFont;
 	
 
-	Title() {	//为标题实例化字体类
+	public Title() {	//为标题实例化字体类
 		count = 0;
-		titleFont = new Font("SimHei", Font.BOLD, 30);	//黑体
-		infoFont = new Font("SimHei", Font.BOLD, 11);
+		titleFont = new Font("SimHei", Font.BOLD, 20);	//黑体
+		infoFont = new Font("SimHei", Font.BOLD, 10);
 	}
 	
 
@@ -19,8 +19,8 @@ public class Title {
 		g.setColor(Color.black);
 		count++;
 		g.setFont(titleFont);
-		g.drawString("SimpleNative Danmaku",150,150);
-		g.drawString("Press SPACE",200,350);
+		g.drawString("SimpleNative Danmaku",130,150);
+		g.drawString("Press SPACE",180,350);
 		
 	}
 
@@ -29,7 +29,7 @@ public class Title {
 		g.setColor(Color.black);
 		count++;
 		g.setFont(titleFont);
-		g.drawString("GAMEOVER",150,150);
+		g.drawString("GAMEOVER",200,150);
 	}
 	
 }

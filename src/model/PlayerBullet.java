@@ -1,13 +1,12 @@
 package model;
 import java.awt.*;
-import java.awt.event.*;
 
 import main.*;
 
 //玩家子弹类
 public class PlayerBullet extends GameObject {
 
-	PlayerBullet() {	//玩家子弹构造方法
+	public PlayerBullet() {	//玩家子弹构造方法
 		active = false;
 	}
 	

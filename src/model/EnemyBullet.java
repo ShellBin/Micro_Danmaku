@@ -1,6 +1,5 @@
 package model;
 import java.awt.*;
-import java.awt.event.*;
 
 import main.*;
 
@@ -11,7 +10,7 @@ public class EnemyBullet extends GameObject {
 	double speedX;
 	double speedY;
 	
-	EnemyBullet() {	//敌军子弹构造方法
+	public EnemyBullet() {	//敌军子弹构造方法
 		active = false;
 	}
 	

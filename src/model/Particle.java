@@ -1,9 +1,9 @@
 package model;
 import java.awt.*;
-import java.awt.event.*;
 
 import main.GameObject;
 
+//粒子特效
 public class Particle extends GameObject {
 	double direction;
 	double speed;
@@ -11,7 +11,7 @@ public class Particle extends GameObject {
 	double speedY;
 	int size;
 	
-	Particle() {
+	public Particle() {
 		active = false;
 	}
 	
@@ -42,7 +42,7 @@ public class Particle extends GameObject {
 		active = true;
 		size = 30;
 		
-		//为了更高的速度，吧极坐标转xy
+		//为了更高的速度，把极坐标转xy
 		double radian;
 		radian = Math.toRadians(direction);	//度数转弧度
 		speedX = speed * Math.cos(radian);

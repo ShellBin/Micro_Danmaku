@@ -8,7 +8,7 @@ public abstract class GameObject {
 	public double x;	//X坐标
 	public double y;	//Y坐标
 	
-	abstract void move();	//抽象逐步执行方法
-	abstract void draw(Graphics g);	//抽象绘制方法
+	public abstract void move();	//单步执行
+	public abstract void draw(Graphics g);	//绘制
 	
 }

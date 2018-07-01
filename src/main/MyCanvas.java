@@ -1,11 +1,11 @@
 package main;
 import java.awt.*;
-import java.awt.event.*;
 import java.util.Random;
 
 import model.*;
 
 public class MyCanvas extends Canvas implements Runnable{
+
 	ObjectPool objectpool;
 	KeyInput keyinput;
 	Image imgBuf;
@@ -14,28 +14,24 @@ public class MyCanvas extends Canvas implements Runnable{
 	Title title;
 	Score score;
 	
-	//场景管理
+	//画面切换管理
 	public int scene;
 	static final int SCENE_TITLE = 0;
 	static final int SCENE_GAMEMAIN = 1;
-	
-	
+		
 	public boolean gameover;
 	int counter;
 	
-	
-	//短按
-	static final int SHOT_PRESSED = 1;
-	//按下
-	static final int SHOT_DOWN = 2;
+	static final int SHOT_PRESSED = 1;	//短按
+	static final int SHOT_DOWN = 2;		//按下
 	int shotkey_state;
 
 
 	MyCanvas() {
 		keyinput = new KeyInput();
 		addKeyListener(keyinput);
-		setFocusable(true);	//启用以获得焦点
-		random = new Random();	//随机数对象
+//		setFocusable(true);			//获得焦点可以操作
+		random = new Random();		//随机数对象
 		title = new Title();
 		score = new Score();
 	}
@@ -48,11 +44,10 @@ public class MyCanvas extends Canvas implements Runnable{
 	public void init() {
 		objectpool = new ObjectPool();
 		Score.loadScore();		
-		//进入标题画面
-		scene = SCENE_TITLE;
-		gameover = false;
-		Level.initLevel();	//关卡
-		Score.initScore();	//分数
+		scene = SCENE_TITLE;//初始化后进入标题画面
+		gameover = false;	//重置游戏状态
+		Level.initLevel();	//关卡初始化
+		Score.initScore();	//分数初始化
 	}
 	
 
@@ -62,9 +57,8 @@ public class MyCanvas extends Canvas implements Runnable{
 	}
 	
 	/**
-	 * 绘图过程
-	 * 在重绘时调用
-	 * 从屏幕外缓冲区复制并显示
+	 * 绘图过程，在重绘每帧时调用执行
+	 * 从屏幕缓冲区复制并显示
 	 */
 	public void paint(Graphics g) {
 		g.drawImage(imgBuf, 0, 0, this);
@@ -73,7 +67,7 @@ public class MyCanvas extends Canvas implements Runnable{
 	
 	@Override
 	public void run() {
-		//创建屏幕外缓冲区
+		//创建屏幕缓冲区
 		imgBuf = createImage(500, 500);
 		gBuf = imgBuf.getGraphics();
 		
@@ -83,26 +77,23 @@ public class MyCanvas extends Canvas implements Runnable{
 			gBuf.setColor(Color.white);
 			gBuf.fillRect(0, 0, 500, 500);
 
-			//画面切换
 			switch (scene) {
-				case 0:
-				title.drawTitle(gBuf);
-				score.drawScore(gBuf);
-				score.drawHiScore(gBuf);
+				case 0:	title.drawTitle(gBuf);
+						score.drawScore(gBuf);
+						score.drawHiScore(gBuf);
 					
 				if (shotkey_state == SHOT_DOWN) {	//空格键按下进入游戏
 					scene = SCENE_GAMEMAIN;
 				}
 				break;
-				case 1:
-				gameMain();	//游戏主画面
+				case 1: gameMain();	//游戏主画面
 				break;
 			}
 			
 			repaint();	//重绘
 			
 			try {
-				Thread.sleep(20);
+				Thread.sleep(15);	//通过延时调整游戏速度
 			}
 			catch(InterruptedException e)
 			{}
@@ -110,7 +101,7 @@ public class MyCanvas extends Canvas implements Runnable{
 	}
 
 
-	public void update(Graphics g) {	//提高效率不每次清除屏幕重
+	public void update(Graphics g) {	//提高效率不每次清除屏幕
 		paint(g);
 	}
 	
@@ -150,8 +141,7 @@ public class MyCanvas extends Canvas implements Runnable{
 		objectpool.drawAll(gBuf);
 		//得分绘制
 		score.drawScore(gBuf);
-		score.drawHiScore(gBuf);
-		
+		score.drawHiScore(gBuf);		
 	}
 
 }

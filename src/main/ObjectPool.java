@@ -1,6 +1,5 @@
 package main;
 import java.awt.*;
-import java.awt.event.*;
 
 import model.*;
 
@@ -10,13 +9,9 @@ import model.*;
 */
 public class ObjectPool {	
 	static EnemyBullet[] EnemyBullet;	//提前生成保存敌弹队列
-
 	static Enemy[] enemy;	//提前生成保存敌机队列
-
 	static PlayerBullet[] PlayerBullet;	//预生成玩家弹列
-
 	static Particle[] particle;	//预生成爆炸效果
-
 	Player player;	//玩家实例化
 	
 	//TP
@@ -26,14 +21,14 @@ public class ObjectPool {
 	
 	//最大数量设定
 	static final int EnemyBullet_MAX = 100;
-	static final int ENEMY_MAX = 100;
+	static final int ENEMY_MAX = 50;
 	static final int PARTICLE_MAX = 100;
 	static final int PlayerBullet_MAX = 10;
 	
 
 	ObjectPool() {
 		//初始化玩家
-		player = new Player(250, 400, 4);	//位置及速度
+		player = new Player(250, 400, 5);	//位置及速度
 		player.active = true;
 		
 		//数量限制
@@ -61,7 +56,7 @@ public class ObjectPool {
 		}
 	}
 
-	public void drawAll(Graphics g) {	//绘制所有对象
+	public void drawAll(Graphics g) {	//绘制所有游戏对象
         doGameObjects(g, EnemyBullet);
         doGameObjects(g, enemy);
         doGameObjects(g, PlayerBullet);
@@ -69,7 +64,7 @@ public class ObjectPool {
 		player.draw(g);
 	}
 
-    public void doGameObjects(Graphics g, GameObject[] objary) {	//按照排列规则行事
+    public void doGameObjects(Graphics g, GameObject[] objary) {	//按照排列规则
         for (int i = 0; i < objary.length; i++) {			
             if (objary[i].active == true) {
                 objary[i].move();

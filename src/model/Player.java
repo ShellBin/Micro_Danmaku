@@ -1,6 +1,5 @@
 package model;
 import java.awt.*;
-import java.awt.event.*;
 
 import main.*;
 
@@ -14,7 +13,7 @@ public class Player extends GameObject {
 	 * 参数 iy(double)：生成处的Y坐标
 	 * 参数 ispeed(double)：移动速度
 	 */	
-    Player(double ix, double iy, double ispeed) {
+    public Player(double ix, double iy, double ispeed) {
         x = ix;
 		y = iy;
 		speed = ispeed;
@@ -47,7 +46,7 @@ public class Player extends GameObject {
 	public void draw(Graphics g) {	//循环一次绘制一次
 		if (active){
 			g.setColor(Color.red);
-			//绘制三角形
+			//绘制玩家三角形
 			g.drawLine((int)(x), (int)(y-14), (int)(x-10), (int)(y+7));
 			g.drawLine((int)(x), (int)(y-14), (int)(x+10), (int)(y+7));
 			g.drawLine((int)(x-10), (int)(y+7), (int)(x+10), (int)(y+7));
