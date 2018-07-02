@@ -45,7 +45,7 @@ public class Player extends GameObject {
     
 	public void draw(Graphics g) {	//循环一次绘制一次
 		if (active){
-			g.setColor(Color.red);
+			g.setColor(Color.green);
 			//绘制玩家三角形
 			g.drawLine((int)(x), (int)(y-14), (int)(x-10), (int)(y+7));
 			g.drawLine((int)(x), (int)(y-14), (int)(x+10), (int)(y+7));

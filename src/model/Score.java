@@ -1,7 +1,6 @@
 package model;
 
 import java.awt.*;
-import java.io.*;
 
 //得分的控制和显示
 public class Score {
@@ -12,26 +11,23 @@ public class Score {
 	public Score() {
 		scoreFont = new Font("SimHei", Font.BOLD, 15); 	//黑体
 		myscore = 0;
-	}
-	
+	}	
 
 	public void drawScore(Graphics g) {	//得分的显示
-		g.setColor(Color.black);
+		g.setColor(Color.white);
 		g.setFont(scoreFont);
 		g.drawString("得分:"+myscore, 10, 30);	
 	}
 	
 	public void drawHiScore(Graphics g) {	//最高分显示
-		g.setColor(Color.black);
+		g.setColor(Color.white);
 		g.setFont(scoreFont);
 		g.drawString("最高分:"+hiscore, 350, 30);
-	}
-	
+	}	
 	
 	public static void addScore(int gain) {	//计分添加
 		myscore += gain;
-	}
-	
+	}	
 
 	public static void compareScore() {	//最高分更新处理
 		if (myscore > hiscore) {
@@ -42,23 +38,17 @@ public class Score {
 
 
 	/**
-	 * 得分保存为 data.dat
-	 * 暂时停用的特性
+	 * 得分保存为 data.dat（未实现）
 	 */
 	static void saveScore() {
-//            DataOutputStream dout = new DataOutputStream(new FileOutputStream("data.dat"));
-//            dout.writeInt(hiscore);
-//            dout.close();
+		
 	}
 
 	/**
-	 * 从data.dat读取分数
-	 * 暂时停用的特性
+	 * 从data.dat读取分数（未实现）
 	 */
 	public static void loadScore() {
-//            DataInputStream din = new DataInputStream(new FileInputStream("data.dat"));
-//            hiscore = din.readInt();
-//            din.close();
+		
 	}
 
 

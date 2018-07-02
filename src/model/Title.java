@@ -16,7 +16,7 @@ public class Title {
 	
 
 	public void drawTitle(Graphics g) {	//游戏开始界面
-		g.setColor(Color.black);
+		g.setColor(Color.white);
 		count++;
 		g.setFont(titleFont);
 		g.drawString("SimpleNative Danmaku",130,150);
@@ -26,7 +26,7 @@ public class Title {
 
 	
 	public void drawGameover(Graphics g) {	//游戏结束界面
-		g.setColor(Color.black);
+		g.setColor(Color.white);
 		count++;
 		g.setFont(titleFont);
 		g.drawString("GAMEOVER",200,150);

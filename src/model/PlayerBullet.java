@@ -19,7 +19,7 @@ public class PlayerBullet extends GameObject {
 	}
 	
 	public void draw(Graphics g) {	//循环一次执行一次
-		g.setColor(Color.gray);
+		g.setColor(Color.blue);
 		//绘制长方形
 		g.drawRect((int)x-3, (int)y-10, (int)6, (int)20);
 	}
@@ -28,6 +28,6 @@ public class PlayerBullet extends GameObject {
 	public void activate(double ix, double iy) {
 		x = ix;
 		y = iy;
-		active = true;	//启用子弹
+		active = true;	//可视化子弹
 	}
 }

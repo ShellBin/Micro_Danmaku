@@ -8,7 +8,7 @@ public class Level {	//关卡管理，每500帧提高一关
 	}
 	
 	public static void addLevel() {	//关卡增加方法，最高10关
-		if (level < 10) {
+		if (level < 8) {
 			level++;
 		}
 		System.out.println("level:"+level);	//debug用

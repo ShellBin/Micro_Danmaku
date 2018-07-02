@@ -30,7 +30,7 @@ public class MyCanvas extends Canvas implements Runnable{
 	MyCanvas() {
 		keyinput = new KeyInput();
 		addKeyListener(keyinput);
-//		setFocusable(true);			//获得焦点可以操作
+		setFocusable(true);			//获得焦点可以操作
 		random = new Random();		//随机数对象
 		title = new Title();
 		score = new Score();
@@ -74,7 +74,7 @@ public class MyCanvas extends Canvas implements Runnable{
 		for(counter = 0; ; counter++) {
 			shotkey_state = keyinput.checkShotKey();
 
-			gBuf.setColor(Color.white);
+			gBuf.setColor(Color.black);		//背景色设置
 			gBuf.fillRect(0, 0, 500, 500);
 
 			switch (scene) {
@@ -93,7 +93,7 @@ public class MyCanvas extends Canvas implements Runnable{
 			repaint();	//重绘
 			
 			try {
-				Thread.sleep(15);	//通过延时调整游戏速度
+				Thread.sleep(17);	//通过延时调整游戏速度
 			}
 			catch(InterruptedException e)
 			{}

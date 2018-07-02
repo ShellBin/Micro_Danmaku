@@ -7,28 +7,30 @@ import model.*;
 *玩家，子弹，敌人等对象状态管理
 *碰撞检测
 */
-public class ObjectPool {	
+public class ObjectPool {
+	boolean GodMode = false;	//无敌模式（调试用）
+	
 	static EnemyBullet[] EnemyBullet;	//提前生成保存敌弹队列
 	static Enemy[] enemy;	//提前生成保存敌机队列
 	static PlayerBullet[] PlayerBullet;	//预生成玩家弹列
 	static Particle[] particle;	//预生成爆炸效果
 	Player player;	//玩家实例化
 	
-	//TP
+	//碰撞盒大小范围
 	static final int DIST_PLAYER_TO_EnemyBullet = 8;
 	static final int DIST_PLAYER_TO_ENEMY = 16;
 	static final int DIST_ENEMY_TO_PlayerBullet = 16;
 	
-	//最大数量设定
+	//单位最大数量设定
 	static final int EnemyBullet_MAX = 100;
 	static final int ENEMY_MAX = 50;
-	static final int PARTICLE_MAX = 100;
+	static final int PARTICLE_MAX = 400;
 	static final int PlayerBullet_MAX = 10;
 	
 
 	ObjectPool() {
 		//初始化玩家
-		player = new Player(250, 400, 5);	//位置及速度
+		player = new Player(250, 400, 4);	//位置及速度
 		player.active = true;
 		
 		//数量限制
@@ -167,19 +169,15 @@ public class ObjectPool {
 
 
 	public void getColision() {	//碰撞检测
-		//子弹与玩家的碰撞
-        for (int i = 0; i < EnemyBullet.length; i++) {
-			if ((EnemyBullet[i].active)&&(player.active)) {
-				//中弹判断
+		//敌人子弹与玩家的碰撞
+        for (int i = 0; i < EnemyBullet.length && GodMode == false; i++) {
+			if ((EnemyBullet[i].active)&&(player.active)) {	//中弹判断
 				if (getDistance(player, EnemyBullet[i]) < DIST_PLAYER_TO_EnemyBullet) {
-					//玩家消失
-					player.active = false;
-					//产生爆炸
-					for (int j = 0; j < 360; j += 20) {
+					player.active = false;	//玩家消失
+					for (int j = 0; j < 360; j += 20) {	//产生爆炸
 						newParticle(player.x, player.y, j, 2);
 					}
-					//弾消滅
-					EnemyBullet[i].active = false;
+					EnemyBullet[i].active = false;	//子弹消失
 				}
 			}
         }
@@ -203,7 +201,7 @@ public class ObjectPool {
         }
 
 		//敌人和玩家的碰撞检测
-        for (int i = 0; i < enemy.length; i++) {
+        for (int i = 0; i < enemy.length && GodMode == false; i++) {
 			if ((enemy[i].active)&&(player.active)) {
 				//碰撞判断
 				if (getDistance(player, enemy[i]) < DIST_PLAYER_TO_ENEMY) {
@@ -213,7 +211,6 @@ public class ObjectPool {
 					for (int j = 0; j < 360; j += 20) {
 						newParticle(player.x, player.y, j, 2);
 					}
-					//敌方GG
 				}
 			}
         }
@@ -222,7 +219,6 @@ public class ObjectPool {
 	
 	/**
 	 * 返回游戏结果
-	 * 返回：游戏结束为真
 	 */
 	public boolean isGameover() {
 		return !player.active;

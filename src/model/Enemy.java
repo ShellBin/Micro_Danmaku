@@ -120,10 +120,10 @@ public class Enemy extends GameObject {
         } else {
             switch (type) {
             	case 0:
-                g.setColor(Color.black);
+                g.setColor(Color.white);
                 break;            
                 case 1:
-                g.setColor(Color.blue);
+                g.setColor(Color.white);
                 break;
                 default:
             }

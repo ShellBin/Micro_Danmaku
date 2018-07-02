@@ -24,7 +24,7 @@ public class EnemyBullet extends GameObject {
 	}
 	
 	public void draw(Graphics g) {
-		g.setColor(Color.blue);
+		g.setColor(Color.red);
 		g.drawRect((int)(x-3), (int)(y-3), (int)6, (int)6);
 	}
 
