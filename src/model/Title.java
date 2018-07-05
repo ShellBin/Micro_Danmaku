@@ -19,7 +19,7 @@ public class Title {
 		g.setColor(Color.white);
 		count++;
 		g.setFont(titleFont);
-		g.drawString("SimpleNative Danmaku",130,150);
+		g.drawString("Micro Danmaku",170,150);
 		g.drawString("Press SPACE",180,350);
 		
 	}
